@@ -1,0 +1,35 @@
+<!-- templates/product-card.html -->
+<div class="product-card" data-product-id="{{product.id}}">
+    <div class="product-image-container">
+        <img src="{{product.media.mainImage}}" alt="{{product.name}}" class="product-image">
+        <span class="category-badge">{{product.category}}</span>
+    </div>
+    
+    <div class="product-content">
+        <h3 class="product-title">{{product.name}}</h3>
+        <p class="product-description">{{product.shortDescription}}</p>
+        
+        <div class="product-specs">
+            {{#each product.cardSpecs}}
+            <span class="spec-badge">{{this}}</span>
+            {{/each}}
+        </div>
+        
+        <div class="product-footer">
+            <div class="availability-info">
+                <span class="availability-indicator {{#if product.purchase.availability}}available{{else}}unavailable{{/if}}"></span>
+                <span class="delivery-time">{{product.purchase.leadTime}}</span>
+            </div>
+            
+            <div class="product-actions">
+                <a href="/products/{{product.id}}" class="button button-primary">Szczegóły</a>
+                <button 
+                    data-compare-button 
+                    data-product-id="{{product.id}}"
+                    class="button button-secondary compare-button">
+                    Dodaj do porównania
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
