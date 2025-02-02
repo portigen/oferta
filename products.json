@@ -8,80 +8,690 @@
       "accessories"
     ],
     "products": [
-      {
-        "id": "PS16T500W12V",
-        "category": "power",
-        "name": "Stacja Zasilająca",
-        "fullName": "PORTIGEN PS16T500W12V - Przenośna Stacja Zasilająca",
-        "shortDescription": "Przenośna stacja zasilająca 500Wh z wodoodporną obudową i długim czasem pracy do 42 dni.",
-        "keyFeatures": [
-          {
-            "title": "Długi czas pracy",
-            "description": "Do 42 dni dla małego komputera"
+        {
+            "id": "PS16T500W12V",
+            "category": "power",
+            "name": "Stacja Zasilająca",
+            "fullName": "PORTIGEN PS16T500W12V - Przenośna Stacja Zasilająca",
+            "shortDescription": "Przenośna stacja zasilająca 500Wh z wodoodporną obudową i długim czasem pracy do 42 dni.",
+            "ean": "5901234123457",
+            "media": {
+              "mainImage": "img.svg",
+              "additionalImages": [
+                {
+                  "path": "images/front.jpg",
+                  "description": "Widok z przodu"
+                },
+                {
+                  "path": "images/side.jpg",
+                  "description": "Widok z boku"
+                },
+                {
+                  "path": "images/ports.jpg",
+                  "description": "Panel złączy"
+                }
+              ],
+              "videos": [
+                {
+                  "path": "videos/installation.mp4",
+                  "title": "Instrukcja montażu",
+                  "thumbnail": "videos/installation-thumb.jpg"
+                }
+              ]
+            },
+            "documentation": {
+              "warranty": {
+                "title": "Karta gwarancyjna",
+                "path": "docs/warranty.pdf",
+                "validityMonths": 24
+              },
+              "manual": {
+                "title": "Instrukcja obsługi",
+                "path": "docs/manual.pdf",
+                "languages": ["pl", "en", "de"]
+              },
+              "technical": {
+                "title": "Dokumentacja techniczna",
+                "path": "docs/technical.pdf"
+              },
+              "certificates": [
+                {
+                  "title": "Certyfikat IP67",
+                  "path": "docs/ip67-cert.pdf"
+                },
+                {
+                  "title": "Certyfikat CE",
+                  "path": "docs/ce-cert.pdf"
+                }
+              ]
+            },
+            "purchase": {
+              "shopUrl": "https://sklep.example.com/PS16T500W12V",
+              "availability": true,
+              "leadTime": "2-3 dni"
+            },
+            "keyFeatures": [
+              {
+                "title": "Długi czas pracy",
+                "description": "Do 42 dni dla małego komputera"
+              },
+              {
+                "title": "Wodoodporna obudowa",
+                "description": "Klasa szczelności IP67"
+              },
+              {
+                "title": "Łatwy transport",
+                "description": "Waga 16 kg, wygodny pasek"
+              }
+            ],
+            "technicalSpecs": {
+              "power": {
+                "label": "Moc",
+                "value": "500Wh",
+                "description": "jak 40 powerbanków do telefonu"
+              },
+              "voltage": {
+                "label": "Napięcie",
+                "value": "12V"
+              },
+              "chargingTime": {
+                "label": "Czas ładowania",
+                "value": "8-10 godzin"
+              },
+              "temperature": {
+                "label": "Temperatura pracy",
+                "value": "-20°C do +40°C"
+              },
+              "dimensions": {
+                "label": "Wymiary",
+                "value": "60 cm wysokości, 16 cm średnicy"
+              }
+            },
+            "applications": [
+              {
+                "title": "Monitoring",
+                "description": "Zasilanie kamer w miejscach bez prądu"
+              },
+              {
+                "title": "Pomiary",
+                "description": "Stacje pomiarowe w terenie"
+              }
+            ],
+            "package": [
+              "Wieża zasilająca",
+              "Pasek do przenoszenia",
+              "Instrukcja",
+              "Gwarancja"
+            ],
+            "maintenance": [
+              {
+                "title": "Ładowanie",
+                "description": "Co 6 miesięcy podczas przechowywania"
+              },
+              {
+                "title": "Pojemność",
+                "description": "Nie rozładowywać poniżej 50%"
+              }
+            ],
+            "cardSpecs": [
+              "500Wh",
+              "12V",
+              "IP67"
+            ]
           },
           {
-            "title": "Wodoodporna obudowa",
-            "description": "Klasa szczelności IP67"
-          },
-          {
-            "title": "Łatwy transport",
-            "description": "Waga 16 kg, wygodny pasek"
+            "id": "PS10S25W12V",
+            "category": "power",
+            "name": "Panel Słoneczny",
+            "fullName": "PORTIGEN PS10S25W12V - Panel Słoneczny Fotowoltaiczny",
+            "shortDescription": "Panel słoneczny 25W z regulowanym kątem nachylenia do ładowania stacji PORTIGEN.",
+            "ean": "5901234123458",
+            "media": {
+              "mainImage": "img.svg",
+              "additionalImages": [
+                {
+                  "path": "images/front.jpg",
+                  "description": "Panel z przodu"
+                },
+                {
+                  "path": "images/mounting.jpg",
+                  "description": "System montażowy"
+                }
+              ]
+            },
+            "documentation": {
+              "warranty": {
+                "title": "Karta gwarancyjna",
+                "path": "docs/warranty.pdf",
+                "validityMonths": 24
+              },
+              "manual": {
+                "title": "Instrukcja montażu",
+                "path": "docs/manual.pdf",
+                "languages": ["pl", "en"]
+              }
+            },
+            "purchase": {
+              "shopUrl": "https://sklep.example.com/PS10S25W12V",
+              "availability": true,
+              "leadTime": "1-2 dni"
+            },
+            "keyFeatures": [
+              {
+                "title": "Wodoodporność",
+                "description": "Konstrukcja IP67"
+              },
+              {
+                "title": "Regulacja",
+                "description": "Regulowany kąt nachylenia"
+              }
+            ],
+            "technicalSpecs": {
+              "power": {
+                "label": "Moc",
+                "value": "25W"
+              },
+              "voltage": {
+                "label": "Napięcie",
+                "value": "18V"
+              },
+              "dimensions": {
+                "label": "Wymiary",
+                "value": "30 x 50 x 20 cm"
+              },
+              "weight": {
+                "label": "Waga",
+                "value": "4 kg"
+              }
+            },
+            "cardSpecs": [
+              "25W",
+              "IP67",
+              "4kg"
+            ]
           }
-        ],
-        "technicalSpecs": {
-          "power": {
-            "label": "Moc",
-            "value": "500Wh",
-            "description": "jak 40 powerbanków do telefonu"
+      ,
+          {
+            "id": "PS16M4",
+            "category": "mounting",
+            "name": "Zestaw kotw montażowych",
+            "fullName": "PORTIGEN PS16M4 - Zestaw kotw do montażu stacji zasilania",
+            "shortDescription": "Uniwersalny zestaw montażowy umożliwiający instalację na ścianie, betonie, w gruncie lub na statywie.",
+            "ean": "5901234123459",
+            "media": {
+              "mainImage": "img.svg",
+              "additionalImages": [
+                {
+                  "path": "images/wall-mount.jpg",
+                  "description": "Montaż ścienny"
+                },
+                {
+                  "path": "images/ground-mount.jpg",
+                  "description": "Kotwa gruntowa"
+                },
+                {
+                  "path": "images/tripod.jpg",
+                  "description": "Statyw"
+                }
+              ],
+              "videos": [
+                {
+                  "path": "videos/mounting-guide.mp4",
+                  "title": "Instruktaż montażu",
+                  "thumbnail": "videos/mounting-thumb.jpg"
+                }
+              ]
+            },
+            "documentation": {
+              "warranty": {
+                "title": "Karta gwarancyjna",
+                "path": "docs/warranty.pdf",
+                "validityMonths": 24
+              },
+              "manual": {
+                "title": "Instrukcja montażu",
+                "path": "docs/manual.pdf",
+                "languages": ["pl", "en", "de"]
+              },
+              "technical": {
+                "title": "Specyfikacja techniczna",
+                "path": "docs/tech-specs.pdf"
+              }
+            },
+            "purchase": {
+              "shopUrl": "https://sklep.example.com/PS16M4",
+              "availability": true,
+              "leadTime": "1-2 dni"
+            },
+            "keyFeatures": [
+              {
+                "title": "Uniwersalne mocowanie",
+                "description": "Gwint 1 cal pasujący do stacji PORTIGEN"
+              },
+              {
+                "title": "Solidna konstrukcja",
+                "description": "Stal ocynkowana odporna na korozję"
+              },
+              {
+                "title": "Łatwy montaż",
+                "description": "Kompletny zestaw z instrukcją"
+              }
+            ],
+            "technicalSpecs": {
+              "thread": {
+                "label": "Gwint mocujący",
+                "value": "1 cal"
+              },
+              "anchorLength": {
+                "label": "Długość kotwy gruntowej",
+                "value": "50 cm"
+              },
+              "tripodHeight": {
+                "label": "Wysokość statywu",
+                "value": "50 cm"
+              },
+              "tripodAngle": {
+                "label": "Kąt rozstawu nóg",
+                "value": "45°"
+              },
+              "material": {
+                "label": "Materiał",
+                "value": "Stal ocynkowana"
+              }
+            },
+            "package": [
+              "Kotwa ścienna z kołkami",
+              "Kotwa do betonu",
+              "Kotwa gruntowa 50cm",
+              "Statyw składany",
+              "Komplet śrub i nakrętek",
+              "Instrukcja montażu"
+            ],
+            "cardSpecs": [
+              "Stal ocynk.",
+              "50cm kotwa",
+              "45° statyw"
+            ]
           },
-          "voltage": {
-            "label": "Napięcie",
-            "value": "12V"
+          {
+            "id": "PS10K12V1W",
+            "category": "communication",
+            "name": "Moduł Komunikacyjny",
+            "fullName": "PORTIGEN PS10K12V1W - Moduł Przetwarzania Danych i Komunikacji",
+            "shortDescription": "Zintegrowany moduł komunikacyjny zapewniający lokalizację GPS oraz łączność GSM/LTE.",
+            "ean": "5901234123460",
+            "media": {
+              "mainImage": "img.svg",
+              "additionalImages": [
+                {
+                  "path": "images/top-view.jpg",
+                  "description": "Widok z góry"
+                },
+                {
+                  "path": "images/antenna.jpg",
+                  "description": "System antenowy"
+                }
+              ]
+            },
+            "documentation": {
+              "warranty": {
+                "title": "Karta gwarancyjna",
+                "path": "docs/warranty.pdf",
+                "validityMonths": 24
+              },
+              "manual": {
+                "title": "Instrukcja obsługi",
+                "path": "docs/manual.pdf",
+                "languages": ["pl", "en"]
+              },
+              "technical": {
+                "title": "Dokumentacja techniczna",
+                "path": "docs/technical.pdf"
+              },
+              "certificates": [
+                {
+                  "title": "Certyfikat CE",
+                  "path": "docs/ce-cert.pdf"
+                }
+              ]
+            },
+            "purchase": {
+              "shopUrl": "https://sklep.example.com/PS10K12V1W",
+              "availability": true,
+              "leadTime": "3-4 dni"
+            },
+            "keyFeatures": [
+              {
+                "title": "Precyzyjna lokalizacja",
+                "description": "GPS z dokładnością do 2.5m"
+              },
+              {
+                "title": "Łączność",
+                "description": "GSM/LTE (4G)"
+              },
+              {
+                "title": "Energooszczędność",
+                "description": "Pobór mocy tylko 1W"
+              }
+            ],
+            "technicalSpecs": {
+              "power": {
+                "label": "Zasilanie",
+                "value": "12V DC"
+              },
+              "consumption": {
+                "label": "Pobór mocy",
+                "value": "1W"
+              },
+              "gsmFreq": {
+                "label": "Częstotliwości GSM",
+                "value": "850/900/1800/1900 MHz"
+              },
+              "lte": {
+                "label": "LTE",
+                "value": "Band 1/3/7/8/20"
+              },
+              "gps": {
+                "label": "GPS",
+                "value": "dokładność do 2.5m"
+              }
+            },
+            "cardSpecs": [
+              "GPS ±2.5m",
+              "4G LTE",
+              "1W"
+            ]
           },
-          "chargingTime": {
-            "label": "Czas ładowania",
-            "value": "8-10 godzin"
+          {
+            "id": "PS10D12V01W",
+            "category": "sensors",
+            "name": "Moduł Sensorów",
+            "fullName": "PORTIGEN PS10D12V01W - Moduł Sensorów i Detektorów",
+            "shortDescription": "Wielofunkcyjny moduł pomiarowy z czujnikami środowiskowymi i zapisem danych.",
+            "ean": "5901234123461",
+            "media": {
+              "mainImage": "img.svg",
+              "additionalImages": [
+                {
+                  "path": "images/sensors.jpg",
+                  "description": "Układ sensorów"
+                },
+                {
+                  "path": "images/connections.jpg",
+                  "description": "Panel połączeń"
+                }
+              ]
+            },
+            "documentation": {
+              "warranty": {
+                "title": "Karta gwarancyjna",
+                "path": "docs/warranty.pdf",
+                "validityMonths": 24
+              },
+              "manual": {
+                "title": "Instrukcja obsługi",
+                "path": "docs/manual.pdf",
+                "languages": ["pl", "en"]
+              },
+              "technical": {
+                "title": "Specyfikacja techniczna",
+                "path": "docs/technical.pdf"
+              },
+              "calibration": {
+                "title": "Certyfikat kalibracji",
+                "path": "docs/calibration.pdf"
+              }
+            },
+            "purchase": {
+              "shopUrl": "https://sklep.example.com/PS10D12V01W",
+              "availability": true,
+              "leadTime": "3-4 dni"
+            },
+            "keyFeatures": [
+              {
+                "title": "Niski pobór mocy",
+                "description": "Tylko 0.1W"
+              },
+              {
+                "title": "Wszechstronność",
+                "description": "6 różnych typów czujników"
+              },
+              {
+                "title": "Zapis danych",
+                "description": "Wewnętrzna pamięć 32MB"
+              }
+            ],
+            "technicalSpecs": {
+              "power": {
+                "label": "Zasilanie",
+                "value": "12V DC"
+              },
+              "consumption": {
+                "label": "Pobór mocy",
+                "value": "0.1W"
+              },
+              "sensors": {
+                "label": "Czujniki",
+                "value": "Temp., wilg., ciśn., PM2.5/10, światło, ruch"
+              },
+              "memory": {
+                "label": "Pamięć",
+                "value": "32MB"
+              }
+            },
+            "package": [
+              "Moduł sensorów",
+              "Kabel przyłączeniowy",
+              "Elementy montażowe",
+              "Instrukcja obsługi"
+            ],
+            "cardSpecs": [
+              "6 sensorów",
+              "0.1W",
+              "32MB"
+            ]
           },
-          "temperature": {
-            "label": "Temperatura pracy",
-            "value": "-20°C do +40°C"
+          {
+            "id": "PS10V12V10W",
+            "category": "camera",
+            "name": "Moduł Kamery",
+            "fullName": "PORTIGEN PS10V12V10W - Moduł Kamery z Podświetleniem IR",
+            "shortDescription": "Kamera 5MP z podświetleniem IR do 30m i szerokim kątem widzenia 90°.",
+            "ean": "5901234123462",
+            "media": {
+              "mainImage": "img.svg",
+              "additionalImages": [
+                {
+                  "path": "images/night-vision.jpg",
+                  "description": "Tryb nocny"
+                },
+                {
+                  "path": "images/connections.jpg",
+                  "description": "Złącza"
+                },
+                {
+                  "path": "images/mounting.jpg",
+                  "description": "System montażowy"
+                }
+              ],
+              "videos": [
+                {
+                  "path": "videos/night-demo.mp4",
+                  "title": "Demonstracja widzenia nocnego",
+                  "thumbnail": "videos/night-demo-thumb.jpg"
+                }
+              ]
+            },
+            "documentation": {
+              "warranty": {
+                "title": "Karta gwarancyjna",
+                "path": "docs/warranty.pdf",
+                "validityMonths": 24
+              },
+              "manual": {
+                "title": "Instrukcja obsługi",
+                "path": "docs/manual.pdf",
+                "languages": ["pl", "en"]
+              },
+              "technical": {
+                "title": "Dokumentacja techniczna",
+                "path": "docs/technical.pdf"
+              }
+            },
+            "purchase": {
+              "shopUrl": "https://sklep.example.com/PS10V12V10W",
+              "availability": true,
+              "leadTime": "2-3 dni"
+            },
+            "keyFeatures": [
+              {
+                "title": "Wysoka rozdzielczość",
+                "description": "Sensor 5MP"
+              },
+              {
+                "title": "Widzenie nocne",
+                "description": "IR do 30m"
+              },
+              {
+                "title": "Szeroki kąt",
+                "description": "90° pole widzenia"
+              }
+            ],
+            "technicalSpecs": {
+              "resolution": {
+                "label": "Rozdzielczość",
+                "value": "5MP (2592 × 1944)"
+              },
+              "sensor": {
+                "label": "Przetwornik",
+                "value": "1/2.7\" CMOS"
+              },
+              "sensitivity": {
+                "label": "Czułość",
+                "value": "0.01 Lux (IR wł.)"
+              },
+              "power": {
+                "label": "Pobór mocy",
+                "value": "4W (12W z IR)"
+              }
+            },
+            "cardSpecs": [
+              "5MP",
+              "IR 30m",
+              "90°"
+            ]
           },
-          "dimensions": {
-            "label": "Wymiary",
-            "value": "60 cm wysokości, 16 cm średnicy"
+          {
+            "id": "PS1610A5V30W",
+            "category": "power",
+            "name": "Moduł Przetwarzania Zasilania",
+            "fullName": "PORTIGEN PS1610A5V30W - Moduł Przetwarzania i Monitorowania Zasilania",
+            "shortDescription": "Wydajny konwerter DC-DC z 12V na 5V o mocy 30W i sprawności >95%.",
+            "ean": "5901234123463",
+            "media": {
+              "mainImage": "img.svg",
+              "additionalImages": [
+                {
+                  "path": "images/connections.jpg",
+                  "description": "Panel złączy"
+                },
+                {
+                  "path": "images/internal.jpg",
+                  "description": "Widok wewnętrzny"
+                }
+              ]
+            },
+            "documentation": {
+              "warranty": {
+                "title": "Karta gwarancyjna",
+                "path": "docs/warranty.pdf",
+                "validityMonths": 24
+              },
+              "manual": {
+                "title": "Instrukcja obsługi",
+                "path": "docs/manual.pdf",
+                "languages": ["pl", "en"]
+              },
+              "technical": {
+                "title": "Dokumentacja techniczna",
+                "path": "docs/technical.pdf"
+              }
+            },
+            "purchase": {
+              "shopUrl": "https://sklep.example.com/PS1610A5V30W",
+              "availability": true,
+              "leadTime": "2-3 dni"
+            },
+            "keyFeatures": [
+              {
+                "title": "Wysoka sprawność",
+                "description": "Do 95% sprawności"
+              },
+              {
+                "title": "Stabilne napięcie",
+                "description": "5V DC ±0.1V"
+              },
+              {
+                "title": "Zabezpieczenia",
+                "description": "Przeciążeniowe, zwarciowe, termiczne"
+              }
+            ],
+            "technicalSpecs": {
+              "inputVoltage": {
+                "label": "Napięcie wyjściowe",
+                "value": "5V DC (±0.1V)"
+              },
+              "outputPower": {
+                "label": "Moc wyjściowa",
+                "value": "do 30W"
+              },
+              "outputCurrent": {
+                "label": "Prąd wyjściowy",
+                "value": "max 6A"
+              },
+              "efficiency": {
+                "label": "Sprawność",
+                "value": ">95%"
+              },
+              "dimensions": {
+                "label": "Wymiary",
+                "value": "16cm x 10cm"
+              },
+              "temperature": {
+                "label": "Temperatura pracy",
+                "value": "-20°C do +40°C"
+              }
+            },
+            "protections": [
+              {
+                "title": "Przeciwprzeciążeniowe",
+                "description": "Automatyczne wyłączenie przy przekroczeniu maksymalnej mocy"
+              },
+              {
+                "title": "Przeciwzwarciowe",
+                "description": "Natychmiastowe odcięcie zasilania w przypadku zwarcia"
+              },
+              {
+                "title": "Termiczne",
+                "description": "Kontrola temperatury i automatyczne chłodzenie"
+              },
+              {
+                "title": "Przeciwprzepięciowe",
+                "description": "Ochrona przed skokami napięcia wejściowego"
+              }
+            ],
+            "package": [
+              "Moduł przetwornicy",
+              "Kable przyłączeniowe",
+              "Elementy montażowe",
+              "Instrukcja obsługi"
+            ],
+            "cardSpecs": [
+              "30W",
+              "5V DC",
+              "95% sprawność"
+            ]
           }
-        },
-        "applications": [
-          {
-            "title": "Monitoring",
-            "description": "Zasilanie kamer w miejscach bez prądu"
-          },
-          {
-            "title": "Pomiary",
-            "description": "Stacje pomiarowe w terenie"
-          }
-        ],
-        "package": [
-          "Wieża zasilająca",
-          "Pasek do przenoszenia",
-          "Instrukcja",
-          "Gwarancja"
-        ],
-        "maintenance": [
-          {
-            "title": "Ładowanie",
-            "description": "Co 6 miesięcy podczas przechowywania"
-          },
-          {
-            "title": "Pojemność",
-            "description": "Nie rozładowywać poniżej 50%"
-          }
-        ],
-        "cardSpecs": [
-          "500Wh",
-          "12V",
-          "IP67"
-        ]
-      }
+
     ]
   }
