@@ -1,5 +1,6 @@
 # oferta
 
+```bash
 /
 ├── index.html
 ├── css/
@@ -14,7 +15,9 @@
     ├── product-card.html
     ├── product-page.html
     └── compare-page.html
-    
+```
+
+
 Oferta produktów z menu nawigacyjnym i skrótowym opisem wszystkich produktów systemu PORTIGEN.
 
 
