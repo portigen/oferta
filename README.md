@@ -1,4 +1,20 @@
 # oferta
+
+/
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   ├── main.js
+│   ├── config.js
+│   ├── compare-system.js
+│   └── product-manager.js
+├── products.json
+└── templates/
+    ├── product-card.html
+    ├── product-page.html
+    └── compare-page.html
+    
 Oferta produktów z menu nawigacyjnym i skrótowym opisem wszystkich produktów systemu PORTIGEN.
 
 
