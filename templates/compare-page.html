@@ -1,0 +1,122 @@
+<!-- templates/compare-page.html -->
+<div class="compare-page">
+    <div class="comparison-header">
+        <h1>Porównanie produktów</h1>
+        <div class="comparison-controls">
+            <button class="button button-secondary" onclick="toggleDifferences()" id="toggleDifferences">
+                Podświetl różnice
+            </button>
+            <button class="button button-primary" onclick="window.print()">
+                Drukuj porównanie
+            </button>
+            <button class="button button-accent" onclick="exportComparison()">
+                Eksportuj do PDF
+            </button>
+        </div>
+    </div>
+
+    {{#if products.length}}
+    <div class="scroll-wrapper">
+        <table class="comparison-table">
+            <!-- Header -->
+            <tr>
+                <th>Cecha</th>
+                {{#each products}}
+                <th class="product-column">
+                    <div class="product-header">
+                        <img src="{{this.media.mainImage}}" alt="{{this.name}}" class="product-image">
+                        <h3>{{this.name}}</h3>
+                        <span class="category-badge">{{this.category}}</span>
+                        <button 
+                            class="button button-error remove-product" 
+                            onclick="removeFromComparison('{{this.id}}')"
+                        >
+                            Usuń
+                        </button>
+                    </div>
+                </th>
+                {{/each}}
+            </tr>
+
+            <!-- Basic Info -->
+            <tr>
+                <td><strong>Model</strong></td>
+                {{#each products}}
+                <td>{{this.id}}</td>
+                {{/each}}
+            </tr>
+
+            <tr>
+                <td><strong>Nazwa</strong></td>
+                {{#each products}}
+                <td>{{this.fullName}}</td>
+                {{/each}}
+            </tr>
+
+            <!-- Technical Specs -->
+            <tr class="section-header">
+                <td colspan="{{add products.length 1}}">Specyfikacja techniczna</td>
+            </tr>
+            {{#each technicalSpecs}}
+            <tr class="{{this.className}}">
+                <td><strong>{{this.label}}</strong></td>
+                {{#each this.values}}
+                <td>{{this}}</td>
+                {{/each}}
+            </tr>
+            {{/each}}
+
+            <!-- Features -->
+            <tr class="section-header">
+                <td colspan="{{add products.length 1}}">Główne cechy</td>
+            </tr>
+            {{#each features}}
+            <tr class="{{this.className}}">
+                <td><strong>Cecha {{add @index 1}}</strong></td>
+                {{#each this.values}}
+                <td>{{#if this}}{{this.title}}: {{this.description}}{{else}}-{{/if}}</td>
+                {{/each}}
+            </tr>
+            {{/each}}
+
+            <!-- Package Contents -->
+            <tr class="section-header">
+                <td colspan="{{add products.length 1}}">Zawartość zestawu</td>
+            </tr>
+            {{#each package}}
+            <tr class="{{this.className}}">
+                <td><strong>Element {{add @index 1}}</strong></td>
+                {{#each this.values}}
+                <td>{{this}}</td>
+                {{/each}}
+            </tr>
+            {{/each}}
+
+            <!-- Purchase Info -->
+            <tr class="section-header">
+                <td colspan="{{add products.length 1}}">Informacje zakupowe</td>
+            </tr>
+            <tr>
+                <td><strong>Dostępność</strong></td>
+                {{#each products}}
+                <td>
+                    <span class="availability-indicator {{#if this.purchase.availability}}available{{else}}unavailable{{/if}}"></span>
+                    {{#if this.purchase.availability}}Dostępny{{else}}Niedostępny{{/if}}
+                </td>
+                {{/each}}
+            </tr>
+            <tr>
+                <td><strong>Czas dostawy</strong></td>
+                {{#each products}}
+                <td>{{this.purchase.leadTime}}</td>
+                {{/each}}
+            </tr>
+        </table>
+    </div>
+    {{else}}
+    <div class="empty-comparison">
+        <p>Nie wybrano produktów do porównania.</p>
+        <a href="/" class="button button-primary">Wróć do katalogu</a>
+    </div>
+    {{/if}}
+</div>
