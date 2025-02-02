@@ -13,7 +13,8 @@ const config = {
         productCard: 'templates/product-card.html',
         productPage: 'templates/product-page.html',
         comparePage: 'templates/compare-page.html'
-    }
+    },
+    defaultCompare: ['PS16T500W12V', 'PS10S25W12V'] // Domyślnie porównywane produkty
 };
 
 export default config;
