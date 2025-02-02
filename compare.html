@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porównanie produktów PORTIGEN</title>
+    <style>
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #4CAF50;
+            --background-color: #f5f5f5;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --border-radius: 8px;
+            --spacing-unit: 20px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: var(--spacing-unit);
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .comparison-header {
+            background: var(--card-background);
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-unit);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .comparison-table {
+            width: 100%;
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: var(--primary-color);
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .remove-product {
+            background: #ff5252;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .product-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+
+        .feature-match {
+            background-color: #e8f5e9;
+        }
+
+        .feature-different {
+            background-color: #fce4ec;
+        }
+
+        .highlight-differences {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+        }
+
+        .scroll-wrapper {
+            overflow-x: auto;
+            margin-top: var(--spacing-unit);
+            padding-bottom: var(--spacing-unit);
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        @media print {
+            .comparison-header {
+                display: none;
+            }
+            
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .comparison-table {
+                font-size: 10pt;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="comparison-header">
+            <h1>Porównanie produktów</h1>
+            <div>
+                <button class="highlight-differences" onclick="toggleDifferences()">
+                    Podświetl różnice
+                </button>
+                <button class="highlight-differences" onclick="window.print()">
+                    Drukuj porównanie
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-wrapper">
+            <table id="comparisonTable" class="comparison-table">
+                <!-- Tabela będzie wypełniona przez JavaScript -->
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let highlightEnabled = false;
+        let PRODUCTS='products.json';
+        // Funkcja ładująca produkty z localStorage i JSON
+        async function loadComparison() {
+            try {
+                const response = await fetch();
+                const data = await response.json();
+                const compareList = JSON.parse(localStorage.getItem('compareProducts') || '[]');
+                
+                if (compareList.length === 0) {
+                    document.querySelector('.container').innerHTML = `
+                        <div class="comparison-header">
+                            <h1>Porównanie produktów</h1>
+                        </div>
+                        <div style="text-align: center; padding: 40px;">
+                            <p>Nie wybrano produktów do porównania.</p>
+                            <a href="/" style="color: var(--secondary-color);">Wróć do katalogu</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const products = compareList.map(id => data.products.find(p => p.id === id));
+                renderComparisonTable(products);
+            } catch (error) {
+                console.error('Error loading comparison:', error);
+            }
+        }
+
+        // Funkcja renderująca tabelę porównawczą
+        function renderComparisonTable(products) {
+            const table = document.getElementById('comparisonTable');
+            
+            // Generowanie nagłówków
+            let headerRow = `
+                <tr>
+                    <th>Cecha</th>
+                    ${products.map(product => `
+                        <th>
+                            <img src="/${product.id}/${product.media.mainImage}" class="product-image" alt="${product.name}">
+                            <div>${product.name}</div>
+                            <div class="category-badge">${getCategoryName(product.category)}</div>
+                            <button class="remove-product" onclick="removeFromComparison('${product.id}')">Usuń</button>
+                        </th>
+                    `).join('')}
+                </tr>
+            `;
+
+            // Generowanie wierszy z porównaniem
+            let rows = [];
+
+            // Podstawowe informacje
+            rows.push(createRow('Model', products, p => p.id));
+            rows.push(createRow('Nazwa', products, p => p.fullName));
+            rows.push(createRow('Opis', products, p => p.shortDescription));
+
+            // Specyfikacja techniczna
+            rows.push('<tr><td colspan="' + (products.length + 1) + '" style="background: #f5f5f5;"><strong>Specyfikacja techniczna</strong></td></tr>');
+            const allSpecs = new Set(products.flatMap(p => Object.keys(p.technicalSpecs)));
+            allSpecs.forEach(spec => {
+                rows.push(createRow(
+                    products.find(p => p.technicalSpecs[spec])?.technicalSpecs[spec].label || spec,
+                    products,
+                    p => p.technicalSpecs[spec]?.value || '-'
+                ));
+            });
+
+            // Główne cechy
+            rows.push('<tr><td colspan="' + (products.length + 1) + '" style="background: #f5f5f5;"><strong>Główne cechy</strong></td></tr>');
+            const maxFeatures = Math.max(...products.map(p => p.keyFeatures.length));
+            for (let i = 0; i < maxFeatures; i++) {
+                rows.push(createRow(
+                    `Cecha ${i + 1}`,
+                    products,
+                    p => p.keyFeatures[i] ? `${p.keyFeatures[i].title}: ${p.keyFeatures[i].description}` : '-'
+                ));
+            }
+
+            // Zawartość zestawu
+            rows.push('<tr><td colspan="' + (products.length + 1) + '" style="background: #f5f5f5;"><strong>Zawartość zestawu</strong></td></tr>');
+            const maxPackage = Math.max(...products.map(p => p.package.length));
+            for (let i = 0; i < maxPackage; i++) {
+                rows.push(createRow(
+                    `Element ${i + 1}`,
+                    products,
+                    p => p.package[i] || '-'
+                ));
+            }
+
+            // Sklejanie tabeli
+            table.innerHTML = headerRow + rows.join('');
+        }
+
+        // Funkcja tworząca pojedynczy wiersz porównania
+        function createRow(label, products, valueGetter) {
+            const values = products.map(p => valueGetter(p));
+            const allSame = values.every(v => v === values[0]);
+            const className = highlightEnabled ? (allSame ? 'feature-match' : 'feature-different') : '';
+            
+            return `
+                <tr>
+                    <td><strong>${label}</strong></td>
+                    ${values.map(value => `<td class="${className}">${value}</td>`).join('')}
+                </tr>
+            `;
+        }
+
+        // Funkcja tłumacząca nazwy kategorii
+        function getCategoryName(category) {
+            const categories = {
+                power: 'Zasilanie',
+                sensors: 'Sensory',
+                mounting: 'Montaż',
+                communication: 'Komunikacja',
+                camera: 'Kamery',
+                accessories: 'Akcesoria'
+            };
+            return categories[category] || category;
+        }
+
+        // Funkcja usuwająca produkt z porównania
+        function removeFromComparison(productId) {
+            let compareList = JSON.parse(localStorage.getItem('compareProducts') || '[]');
+            compareList = compareList.filter(id => id !== productId);
+            localStorage.setItem('compareProducts', JSON.stringify(compareList));
+            loadComparison();
+        }
+
+        // Funkcja przełączająca podświetlanie różnic
+        function toggleDifferences() {
+            highlightEnabled = !highlightEnabled;
+            loadComparison();
+        }
+
+        // Inicjalizacja strony
+        document.addEventListener('DOMContentLoaded', loadComparison);
+    </script>
+</body>
+</html>
