@@ -1,0 +1,119 @@
+<!-- templates/product-page.html -->
+<div class="product-page">
+    <nav class="breadcrumb">
+        <a href="/">Strona główna</a> &gt;
+        <a href="/category/{{product.category}}">{{product.category}}</a> &gt;
+        <span>{{product.name}}</span>
+    </nav>
+
+    <div class="product-layout">
+        <!-- Gallery Section -->
+        <div class="gallery-container">
+            <img src="{{product.media.mainImage}}" alt="{{product.name}}" class="main-image" id="mainImage">
+            
+            <div class="thumbnail-grid">
+                {{#each product.media.additionalImages}}
+                <a href="{{this.path}}" data-lightbox="product-gallery" data-title="{{this.description}}">
+                    <img src="{{this.path}}" alt="{{this.description}}" class="thumbnail">
+                </a>
+                {{/each}}
+            </div>
+
+            {{#if product.media.videos}}
+            <div class="video-section">
+                <h3>Materiały wideo</h3>
+                <div class="video-grid">
+                    {{#each product.media.videos}}
+                    <div class="video-thumbnail" data-video="{{this.path}}">
+                        <img src="{{this.thumbnail}}" alt="{{this.title}}">
+                        <div class="play-button">▶</div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            {{/if}}
+        </div>
+
+        <!-- Product Info Section -->
+        <div class="product-info">
+            <h1>{{product.fullName}}</h1>
+            
+            <div class="purchase-section">
+                <div class="purchase-info">
+                    <div class="availability">
+                        <span class="availability-indicator {{#if product.purchase.availability}}available{{else}}unavailable{{/if}}"></span>
+                        <span>{{#if product.purchase.availability}}Dostępny{{else}}Niedostępny{{/if}}</span>
+                        <span>Czas dostawy: {{product.purchase.leadTime}}</span>
+                    </div>
+                    <a href="{{product.purchase.shopUrl}}" class="button button-primary" target="_blank">Kup teraz</a>
+                </div>
+            </div>
+
+            <div class="barcode-section">
+                <svg id="barcode" data-ean="{{product.ean}}"></svg>
+            </div>
+
+            <section class="product-features">
+                <h2>Główne cechy</h2>
+                <ul class="feature-list">
+                    {{#each product.keyFeatures}}
+                    <li>
+                        <strong>{{this.title}}:</strong>
+                        <span>{{this.description}}</span>
+                    </li>
+                    {{/each}}
+                </ul>
+            </section>
+
+            <section class="technical-specs">
+                <h2>Specyfikacja techniczna</h2>
+                <table class="specs-table">
+                    {{#each product.technicalSpecs}}
+                    <tr>
+                        <td>{{this.label}}</td>
+                        <td>{{this.value}}{{#if this.description}} ({{this.description}}){{/if}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </section>
+
+            {{#if product.maintenance}}
+            <section class="maintenance">
+                <h2>Konserwacja i utrzymanie</h2>
+                <ul class="maintenance-list">
+                    {{#each product.maintenance}}
+                    <li>
+                        <strong>{{this.title}}:</strong>
+                        <span>{{this.description}}</span>
+                    </li>
+                    {{/each}}
+                </ul>
+            </section>
+            {{/if}}
+        </div>
+    </div>
+
+    <!-- Documentation Section -->
+    <div class="documentation-section">
+        <h2>Dokumentacja</h2>
+        <div class="doc-grid">
+            {{#each product.documentation}}
+            <a href="{{this.path}}" class="doc-item" target="_blank">
+                <svg class="doc-icon" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                </svg>
+                <div class="doc-info">
+                    <span class="doc-title">{{this.title}}</span>
+                    {{#if this.languages}}
+                    <div class="doc-languages">
+                        {{#each this.languages}}
+                        <span class="language-badge">{{this}}</span>
+                        {{/each}}
+                    </div>
+                    {{/if}}
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+</div>
