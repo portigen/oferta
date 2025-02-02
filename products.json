@@ -1,0 +1,87 @@
+{
+    "categories": [
+      "power",
+      "sensors",
+      "mounting",
+      "communication",
+      "camera",
+      "accessories"
+    ],
+    "products": [
+      {
+        "id": "PS16T500W12V",
+        "category": "power",
+        "name": "Stacja Zasilająca",
+        "fullName": "PORTIGEN PS16T500W12V - Przenośna Stacja Zasilająca",
+        "shortDescription": "Przenośna stacja zasilająca 500Wh z wodoodporną obudową i długim czasem pracy do 42 dni.",
+        "keyFeatures": [
+          {
+            "title": "Długi czas pracy",
+            "description": "Do 42 dni dla małego komputera"
+          },
+          {
+            "title": "Wodoodporna obudowa",
+            "description": "Klasa szczelności IP67"
+          },
+          {
+            "title": "Łatwy transport",
+            "description": "Waga 16 kg, wygodny pasek"
+          }
+        ],
+        "technicalSpecs": {
+          "power": {
+            "label": "Moc",
+            "value": "500Wh",
+            "description": "jak 40 powerbanków do telefonu"
+          },
+          "voltage": {
+            "label": "Napięcie",
+            "value": "12V"
+          },
+          "chargingTime": {
+            "label": "Czas ładowania",
+            "value": "8-10 godzin"
+          },
+          "temperature": {
+            "label": "Temperatura pracy",
+            "value": "-20°C do +40°C"
+          },
+          "dimensions": {
+            "label": "Wymiary",
+            "value": "60 cm wysokości, 16 cm średnicy"
+          }
+        },
+        "applications": [
+          {
+            "title": "Monitoring",
+            "description": "Zasilanie kamer w miejscach bez prądu"
+          },
+          {
+            "title": "Pomiary",
+            "description": "Stacje pomiarowe w terenie"
+          }
+        ],
+        "package": [
+          "Wieża zasilająca",
+          "Pasek do przenoszenia",
+          "Instrukcja",
+          "Gwarancja"
+        ],
+        "maintenance": [
+          {
+            "title": "Ładowanie",
+            "description": "Co 6 miesięcy podczas przechowywania"
+          },
+          {
+            "title": "Pojemność",
+            "description": "Nie rozładowywać poniżej 50%"
+          }
+        ],
+        "cardSpecs": [
+          "500Wh",
+          "12V",
+          "IP67"
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System PORTIGEN - Katalog Produktów</title>
+    <style>
+        :root {
+            --primary-color: #2C3E50;
+            --secondary-color: #3498db;
+            --background-color: #f5f5f5;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --border-radius: 8px;
+            --spacing-unit: 20px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: var(--spacing-unit);
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: calc(2 * var(--spacing-unit)) 0;
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(2 * var(--spacing-unit));
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: calc(1.5 * var(--spacing-unit));
+            padding: var(--spacing-unit) 0;
+        }
+
+        .product-card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-unit);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-unit);
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 180px;
+        }
+
+        .product-specs {
+            margin: calc(0.75 * var(--spacing-unit)) 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .product-specs span {
+            display: inline-block;
+            margin-right: calc(0.75 * var(--spacing-unit));
+        }
+
+        .product-link {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
+            border-radius: var(--border-radius);
+            transition: background 0.2s;
+            text-align: center;
+        }
+
+        .product-link:hover {
+            background: #2980b9;
+        }
+
+        .category-filter {
+            display: flex;
+            gap: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-btn {
+            padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
+            border: none;
+            border-radius: var(--border-radius);
+            background: var(--card-background);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .category-btn.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app">
+        <header>
+            <h1>System PORTIGEN</h1>
+            <p>Kompleksowe rozwiązania zasilania i monitoringu dla zastosowań terenowych</p>
+        </header>
+        <div id="categoryFilter" class="category-filter"></div>
+        <div id="productGrid" class="product-grid"></div>
+    </div>
+
+    <script>
+        // Funkcja do renderowania kategorii
+        function renderCategories(categories, activeCategory) {
+            const filterContainer = document.getElementById('categoryFilter');
+            filterContainer.innerHTML = `
+                <button class="category-btn ${!activeCategory ? 'active' : ''}" 
+                        onclick="filterProducts('all')">
+                    Wszystkie
+                </button>
+                ${categories.map(category => `
+                    <button class="category-btn ${category === activeCategory ? 'active' : ''}"
+                            onclick="filterProducts('${category}')">
+                        ${getCategoryName(category)}
+                    </button>
+                `).join('')}
+            `;
+        }
+
+        // Funkcja do tłumaczenia nazw kategorii
+        function getCategoryName(category) {
+            const categoryNames = {
+                power: 'Zasilanie',
+                sensors: 'Sensory',
+                mounting: 'Montaż',
+                communication: 'Komunikacja',
+                camera: 'Kamery',
+                accessories: 'Akcesoria'
+            };
+            return categoryNames[category] || category;
+        }
+
+        // Funkcja do renderowania produktów
+        function renderProducts(products, category = 'all') {
+            const productGrid = document.getElementById('productGrid');
+            const filteredProducts = category === 'all' 
+                ? products 
+                : products.filter(p => p.category === category);
+
+            productGrid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="${product.id}/img.svg" alt="${product.fullName}">
+                    </div>
+                    <div class="product-info">
+                        <h2>${product.name}</h2>
+                        <p>${product.shortDescription}</p>
+                        <div class="product-specs">
+                            ${product.cardSpecs.map(spec => `
+                                <span>${spec}</span>
+                            `).join('')}
+                        </div>
+                        <a href="${product.id}/index.html" class="product-link">Szczegóły produktu</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Funkcja do filtrowania produktów
+        function filterProducts(category) {
+            loadProducts(category);
+        }
+
+        // Funkcja do ładowania danych produktów
+        async function loadProducts(category = 'all') {
+            try {
+                const response = await fetch('products.json');
+                const data = await response.json();
+                
+                renderCategories(data.categories, category);
+                renderProducts(data.products, category);
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('productGrid').innerHTML = `
+                    <div style="color: red; padding: 20px; grid-column: 1/-1;">
+                        Error loading products. Please try again later.
+                    </div>
+                `;
+            }
+        }
+
+        // Inicjalizacja strony
+        document.addEventListener('DOMContentLoaded', () => loadProducts());
+    </script>
+</body>
+</html>
