@@ -7,7 +7,7 @@ const config = {
     apiEndpoint: '/products.json',
     paths: {
         compare: '/compare.html',
-        products: '/products'
+        products: ''
     },
     templates: {
         productCard: 'templates/product-card.html',
