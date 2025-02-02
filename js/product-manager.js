@@ -2,15 +2,50 @@
 import config from './config.js';
 import templateLoader from './template-loader.js';
 
-export class ProductManager {
+class ProductManager {
     constructor() {
         this.products = [];
         this.filteredProducts = [];
+        this.currentFilters = {
+            category: '',
+            search: '',
+            sorting: 'name'
+        };
     }
 
     async init() {
         await this.loadProducts();
-        this.bindEvents();
+        this.setupEventListeners();
+        await this.renderProducts();
+    }
+
+    setupEventListeners() {
+        // Filtrowanie po kategorii
+        const categorySelect = document.querySelector('[data-filter="category"]');
+        if (categorySelect) {
+            categorySelect.addEventListener('change', (e) => {
+                this.currentFilters.category = e.target.value;
+                this.applyFilters();
+            });
+        }
+
+        // Wyszukiwarka
+        const searchInput = document.querySelector('[data-search]');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                this.currentFilters.search = e.target.value.toLowerCase();
+                this.applyFilters();
+            });
+        }
+
+        // Sortowanie
+        const sortSelect = document.querySelector('[data-filter="sorting"]');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', (e) => {
+                this.currentFilters.sorting = e.target.value;
+                this.applyFilters();
+            });
+        }
     }
 
     async loadProducts() {
@@ -22,16 +57,59 @@ export class ProductManager {
             return this.products;
         } catch (error) {
             console.error('Error loading products:', error);
+            this.showError('Nie udało się załadować produktów');
             return [];
         }
     }
 
+    applyFilters() {
+        let filtered = [...this.products];
+
+        // Filtrowanie po kategorii
+        if (this.currentFilters.category) {
+            filtered = filtered.filter(product => 
+                product.category === this.currentFilters.category
+            );
+        }
+
+        // Filtrowanie po wyszukiwaniu
+        if (this.currentFilters.search) {
+            filtered = filtered.filter(product => 
+                product.name.toLowerCase().includes(this.currentFilters.search) ||
+                product.shortDescription.toLowerCase().includes(this.currentFilters.search)
+            );
+        }
+
+        // Sortowanie
+        filtered.sort((a, b) => {
+            switch (this.currentFilters.sorting) {
+                case 'name':
+                    return a.name.localeCompare(b.name);
+                case 'category':
+                    return a.category.localeCompare(b.category);
+                default:
+                    return 0;
+            }
+        });
+
+        this.filteredProducts = filtered;
+        this.renderProducts();
+    }
+
     async renderProducts() {
         const container = document.getElementById('productGrid');
+        const loadingState = document.getElementById('loadingState');
+        const errorState = document.getElementById('errorState');
+
         if (!container) return;
 
         try {
-            // Renderujemy każdy produkt używając szablonu karty produktu
+            // Pokazujemy stan ładowania
+            if (loadingState) loadingState.style.display = 'block';
+            if (errorState) errorState.style.display = 'none';
+            container.style.display = 'none';
+
+            // Renderujemy produkty
             const productCards = await Promise.all(
                 this.filteredProducts.map(async product => {
                     return templateLoader.renderTemplate('product-card', { product });
@@ -39,113 +117,22 @@ export class ProductManager {
             );
 
             container.innerHTML = productCards.join('');
+
+            // Ukrywamy stan ładowania i pokazujemy produkty
+            if (loadingState) loadingState.style.display = 'none';
+            container.style.display = 'grid';
         } catch (error) {
             console.error('Error rendering products:', error);
-            container.innerHTML = '<div class="error">Błąd ładowania produktów</div>';
+            this.showError('Wystąpił błąd podczas renderowania produktów');
         }
     }
 
-    async renderProductPage(productId) {
-        const product = this.products.find(p => p.id === productId);
-        if (!product) {
-            this.renderError('Produkt nie został znaleziony');
-            return;
+    showError(message) {
+        const errorState = document.getElementById('errorState');
+        if (errorState) {
+            errorState.style.display = 'block';
+            errorState.querySelector('p').textContent = message;
         }
-
-        try {
-            const container = document.getElementById('app');
-            const renderedPage = await templateLoader.renderTemplate('product-page', { product });
-            container.innerHTML = renderedPage;
-
-            // Inicjalizacja dodatkowych funkcjonalności po załadowaniu strony
-            this.initProductPage(product);
-        } catch (error) {
-            console.error('Error rendering product page:', error);
-            this.renderError('Błąd ładowania strony produktu');
-        }
-    }
-
-    async renderComparePage() {
-        try {
-            const compareList = JSON.parse(localStorage.getItem('compareProducts') || '[]');
-            const products = this.products.filter(p => compareList.includes(p.id));
-
-            const container = document.getElementById('app');
-            const renderedPage = await templateLoader.renderTemplate('compare-page', { 
-                products,
-                technicalSpecs: this.prepareComparisonSpecs(products),
-                features: this.prepareComparisonFeatures(products),
-                package: this.prepareComparisonPackage(products)
-            });
-
-            container.innerHTML = renderedPage;
-        } catch (error) {
-            console.error('Error rendering compare page:', error);
-            this.renderError('Błąd ładowania strony porównania');
-        }
-    }
-
-    prepareComparisonSpecs(products) {
-        // Przygotowanie danych do porównania specyfikacji
-        const allSpecs = new Set(products.flatMap(p => Object.keys(p.technicalSpecs)));
-        return Array.from(allSpecs).map(spec => ({
-            label: products.find(p => p.technicalSpecs[spec])?.technicalSpecs[spec].label || spec,
-            values: products.map(p => p.technicalSpecs[spec]?.value || '-'),
-            className: this.getComparisonClassName(products, p => p.technicalSpecs[spec]?.value)
-        }));
-    }
-
-    prepareComparisonFeatures(products) {
-        const maxFeatures = Math.max(...products.map(p => p.keyFeatures.length));
-        return Array.from({ length: maxFeatures }, (_, i) => ({
-            values: products.map(p => p.keyFeatures[i] || null),
-            className: this.getComparisonClassName(products, p => p.keyFeatures[i])
-        }));
-    }
-
-    prepareComparisonPackage(products) {
-        const maxItems = Math.max(...products.map(p => p.package.length));
-        return Array.from({ length: maxItems }, (_, i) => ({
-            values: products.map(p => p.package[i] || '-'),
-            className: this.getComparisonClassName(products, p => p.package[i])
-        }));
-    }
-
-    getComparisonClassName(products, valueGetter) {
-        const values = products.map(valueGetter);
-        const allSame = values.every(v => JSON.stringify(v) === JSON.stringify(values[0]));
-        return allSame ? 'feature-match' : 'feature-different';
-    }
-
-    initProductPage(product) {
-        // Inicjalizacja kodu kreskowego
-        if (product.ean) {
-            JsBarcode("#barcode", product.ean, {
-                format: "EAN13",
-                width: 2,
-                height: 100,
-                displayValue: true
-            });
-        }
-
-        // Inicjalizacja lightbox dla galerii
-        if (window.lightbox) {
-            lightbox.option({
-                'resizeDuration': 200,
-                'wrapAround': true
-            });
-        }
-    }
-
-    renderError(message) {
-        const container = document.getElementById('app');
-        container.innerHTML = `
-            <div class="error-message">
-                <h2>Błąd</h2>
-                <p>${message}</p>
-                <a href="/" class="button button-primary">Wróć do strony głównej</a>
-            </div>
-        `;
     }
 }
 
