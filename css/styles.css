@@ -1,0 +1,362 @@
+/* === Variables === */
+:root {
+    --primary-color: #2C3E50;
+    --secondary-color: #4CAF50;
+    --accent-color: #3498db;
+    --background-color: #f5f5f5;
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --error-color: #ff5252;
+    --success-color: #4CAF50;
+    --warning-color: #FFC107;
+    --border-radius: 8px;
+    --spacing-unit: 20px;
+    --shadow-small: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-medium: 0 4px 8px rgba(0,0,0,0.1);
+    --shadow-large: 0 8px 16px rgba(0,0,0,0.1);
+    --transition-speed: 0.2s;
+}
+
+/* === Reset and Base Styles === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--background-color);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-unit);
+}
+
+/* === Typography === */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+/* === Header and Navigation === */
+.header {
+    background: var(--card-background);
+    padding: calc(2 * var(--spacing-unit)) var(--spacing-unit);
+    border-radius: var(--border-radius);
+    margin-bottom: calc(2 * var(--spacing-unit));
+    box-shadow: var(--shadow-small);
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-unit);
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-unit);
+    box-shadow: var(--shadow-small);
+}
+
+/* === Product Grid === */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: calc(1.5 * var(--spacing-unit));
+    padding: var(--spacing-unit) 0;
+}
+
+.product-card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-unit);
+    box-shadow: var(--shadow-small);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-unit);
+}
+
+/* === Product Details === */
+.product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(2 * var(--spacing-unit));
+    margin-top: var(--spacing-unit);
+}
+
+.gallery-container {
+    background: var(--card-background);
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-small);
+}
+
+.thumbnail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: var(--spacing-unit);
+}
+
+.thumbnail {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: calc(var(--border-radius) / 2);
+    cursor: pointer;
+    transition: transform var(--transition-speed);
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+/* === Compare System === */
+.compare-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--card-background);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-large);
+    display: none;
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.compare-float.visible {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.compare-button {
+    background: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.compare-button.active {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* === Comparison Table === */
+.comparison-table {
+    width: 100%;
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    box-shadow: var(--shadow-small);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.comparison-table th {
+    background: var(--primary-color);
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.feature-match {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.feature-different {
+    background-color: rgba(255, 82, 82, 0.1);
+}
+
+/* === Documentation Section === */
+.documentation-section {
+    background: var(--card-background);
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius);
+    margin-top: var(--spacing-unit);
+    box-shadow: var(--shadow-small);
+}
+
+.doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-unit);
+}
+
+.doc-item {
+    padding: 15px;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color var(--transition-speed);
+}
+
+.doc-item:hover {
+    background-color: #eee;
+}
+
+/* === Buttons and Controls === */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed);
+    text-decoration: none;
+    text-align: center;
+}
+
+.button-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.button-secondary {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.button-accent {
+    background: var(--accent-color);
+    color: white;
+}
+
+/* === Forms and Inputs === */
+.form-control {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: var(--spacing-unit);
+}
+
+.input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* === Utilities === */
+.text-center { text-align: center; }
+.mt-1 { margin-top: var(--spacing-unit); }
+.mb-1 { margin-bottom: var(--spacing-unit); }
+.p-1 { padding: var(--spacing-unit); }
+
+/* === Responsive Design === */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+    }
+
+    .product-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .compare-float {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+}
+
+/* === Print Styles === */
+@media print {
+    .compare-float,
+    .nav-bar,
+    .button {
+        display: none;
+    }
+
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    body {
+        background: white;
+    }
+
+    .comparison-table {
+        box-shadow: none;
+    }
+}
