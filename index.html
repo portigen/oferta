@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System PORTIGEN - Katalog Produktów</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2C3E50;
+            margin: 0;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .product-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .product-image img {
+            max-width: 100%;
+            max-height: 180px;
+        }
+        .product-info h2 {
+            color: #2C3E50;
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+        .product-info p {
+            margin: 0 0 20px 0;
+            flex-grow: 1;
+        }
+        .product-link {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.2s;
+            text-align: center;
+        }
+        .product-link:hover {
+            background: #2980b9;
+        }
+        .product-specs {
+            margin: 15px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .product-specs span {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>System PORTIGEN</h1>
+            <p>Kompleksowe rozwiązania zasilania i monitoringu dla zastosowań terenowych</p>
+        </header>
+
+        <div class="product-grid">
+            <!-- Stacja zasilająca -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="PS16T500W12V/img.svg" alt="Stacja zasilająca PORTIGEN">
+                </div>
+                <div class="product-info">
+                    <h2>PS16T500W12V - Stacja Zasilająca</h2>
+                    <p>Przenośna stacja zasilająca 500Wh z wodoodporną obudową i długim czasem pracy do 42 dni.</p>
+                    <div class="product-specs">
+                        <span>500Wh</span>
+                        <span>12V</span>
+                        <span>IP67</span>
+                    </div>
+                    <a href="PS16T500W12V/index.html" class="product-link">Szczegóły produktu</a>
+                </div>
+            </div>
+
+            <!-- Panel słoneczny -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="PS10S25W12V/img.svg" alt="Panel słoneczny PORTIGEN">
+                </div>
+                <div class="product-info">
+                    <h2>PS10S25W12V - Panel Słoneczny</h2>
+                    <p>Wodoodporny panel fotowoltaiczny 25W z regulowanym kątem nachylenia do ładowania stacji.</p>
+                    <div class="product-specs">
+                        <span>25W</span>
+                        <span>18V</span>
+                        <span>4 kg</span>
+                    </div>
+                    <a href="PS10S25W12V/index.html" class="product-link">Szczegóły produktu</a>
+                </div>
+            </div>
+
+            <!-- Zestaw kotw -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="PS16M4/img.svg" alt="Zestaw kotw PORTIGEN">
+                </div>
+                <div class="product-info">
+                    <h2>PS16M4 - Zestaw Kotw</h2>
+                    <p>Uniwersalny system montażowy umożliwiający instalację na ścianie, betonie, w gruncie lub na statywie.</p>
+                    <div class="product-specs">
+                        <span>Stal ocynkowana</span>
+                        <span>50cm kotwa</span>
+                    </div>
+                    <a href="PS16M4/index.html" class="product-link">Szczegóły produktu</a>
+                </div>
+            </div>
+
+            <!-- Moduł komunikacyjny -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="PS10K12V1W/img.svg" alt="Moduł komunikacyjny PORTIGEN">
+                </div>
+                <div class="product-info">
+                    <h2>PS10K12V1W - Moduł Komunikacyjny</h2>
+                    <p>Moduł GPS/LTE zapewniający precyzyjną lokalizację i szybką transmisję danych.</p>
+                    <div class="product-specs">
+                        <span>GPS ±2.5m</span>
+                        <span>4G LTE</span>
+                        <span>1W</span>
+                    </div>
+                    <a href="PS10K12V1W/index.html" class="product-link">Szczegóły produktu</a>
+                </div>
+            </div>
+
+            <!-- Moduł sensorów -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="PS10D12V01W/img.svg" alt="Moduł sensorów PORTIGEN">
+                </div>
+                <div class="product-info">
+                    <h2>PS10D12V01W - Moduł Sensorów</h2>
+                    <p>Wielofunkcyjny moduł pomiarowy z czujnikami temperatury, wilgotności, ciśnienia i jakości powietrza.</p>
+                    <div class="product-specs">
+                        <span>0.1W</span>
+                        <span>6 sensorów</span>
+                        <span>32MB pamięci</span>
+                    </div>
+                    <a href="PS10D12V01W/index.html" class="product-link">Szczegóły produktu</a>
+                </div>
+            </div>
+
+            <!-- Moduł kamery -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="PS10V12V10W/img.svg" alt="Moduł kamery PORTIGEN">
+                </div>
+                <div class="product-info">
+                    <h2>PS10V12V10W - Moduł Kamery</h2>
+                    <p>Kamera 5MP z podświetleniem IR do 30m i szerokim kątem widzenia 90°.</p>
+                    <div class="product-specs">
+                        <span>5MP</span>
+                        <span>IR 30m</span>
+                        <span>H.265+</span>
+                    </div>
+                    <a href="PS10V12V10W/index.html" class="product-link">Szczegóły produktu</a>
+                </div>
+            </div>
+
+            <!-- Moduł przetwarzania zasilania -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="PS1610A5V30W/img.svg" alt="Moduł przetwarzania zasilania PORTIGEN">
+                </div>
+                <div class="product-info">
+                    <h2>PS1610A5V30W - Konwerter Zasilania</h2>
+                    <p>Wydajny konwerter DC-DC z 12V na 5V o mocy 30W i sprawności >95%.</p>
+                    <div class="product-specs">
+                        <span>30W</span>
+                        <span>5V DC</span>
+                        <span>95% sprawność</span>
+                    </div>
+                    <a href="PS1610A5V30W/index.html" class="product-link">Szczegóły produktu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
