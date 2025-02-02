@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600">
+  <!-- Main body of the power station -->
+  <circle cx="200" cy="300" r="80" fill="#e0e0e0" stroke="#333" stroke-width="4"/>
+  
+  <!-- Top cap -->
+  <path d="M120 300 Q200 280 280 300" fill="none" stroke="#333" stroke-width="4"/>
+  
+  <!-- Bottom cap -->
+  <path d="M120 300 Q200 320 280 300" fill="none" stroke="#333" stroke-width="4"/>
+  
+  <!-- Power indicator -->
+  <circle cx="200" cy="270" r="10" fill="#4CAF50"/>
+  
+  <!-- Control panel -->
+  <rect x="170" y="290" width="60" height="30" fill="#666"/>
+  
+  <!-- Ports -->
+  <rect x="180" y="330" width="40" height="10" fill="#333"/>
+  <rect x="180" y="350" width="40" height="10" fill="#333"/>
+  
+  <!-- Carrying strap -->
+  <path d="M280 280 Q320 200 280 120" fill="none" stroke="#666" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Measurements -->
+  <text x="320" y="300" font-family="Arial" font-size="14" fill="#333">60 cm</text>
+  <line x1="300" y1="240" x2="300" y2="360" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <text x="200" y="420" font-family="Arial" font-size="14" fill="#333">16 cm</text>
+  <line x1="120" y1="400" x2="280" y2="400" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+</svg>

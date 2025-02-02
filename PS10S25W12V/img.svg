@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <!-- Main panel frame -->
+  <rect x="100" y="50" width="300" height="200" fill="#1a237e" stroke="#424242" stroke-width="4"/>
+  
+  <!-- Solar cells grid -->
+  <g id="solar-cells">
+    <!-- Creating a 4x6 grid of cells -->
+    <g id="cell-pattern" fill="#000066" stroke="#0d47a1" stroke-width="1">
+      <rect x="110" y="60" width="65" height="40"/>
+      <rect x="180" y="60" width="65" height="40"/>
+      <rect x="250" y="60" width="65" height="40"/>
+      <rect x="320" y="60" width="65" height="40"/>
+      
+      <rect x="110" y="105" width="65" height="40"/>
+      <rect x="180" y="105" width="65" height="40"/>
+      <rect x="250" y="105" width="65" height="40"/>
+      <rect x="320" y="105" width="65" height="40"/>
+      
+      <rect x="110" y="150" width="65" height="40"/>
+      <rect x="180" y="150" width="65" height="40"/>
+      <rect x="250" y="150" width="65" height="40"/>
+      <rect x="320" y="150" width="65" height="40"/>
+      
+      <rect x="110" y="195" width="65" height="40"/>
+      <rect x="180" y="195" width="65" height="40"/>
+      <rect x="250" y="195" width="65" height="40"/>
+      <rect x="320" y="195" width="65" height="40"/>
+    </g>
+  </g>
+
+  <!-- Mounting bracket -->
+  <path d="M150 250 L100 350 L400 350 L350 250" fill="none" stroke="#424242" stroke-width="4"/>
+  
+  <!-- Connection box -->
+  <rect x="220" y="260" width="60" height="30" fill="#424242"/>
+  
+  <!-- Dimensions -->
+  <text x="420" y="150" font-family="Arial" font-size="14" fill="#333">50 cm</text>
+  <line x1="410" y1="50" x2="410" y2="250" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <text x="250" y="30" font-family="Arial" font-size="14" fill="#333">30 cm</text>
+  <line x1="100" y1="20" x2="400" y2="20" stroke="#333" stroke-width="1" stroke-dasharray="5,5"/>
+  
+  <!-- Sun rays -->
+  <g id="sun-rays" stroke="#FFD700" stroke-width="2">
+    <line x1="50" y1="20" x2="80" y2="40" opacity="0.6"/>
+    <line x1="60" y1="60" x2="90" y2="80" opacity="0.6"/>
+    <line x1="40" y1="100" x2="70" y2="120" opacity="0.6"/>
+  </g>
+</svg>

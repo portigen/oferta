@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <!-- Main module housing -->
+  <rect x="100" y="100" width="300" height="200" fill="#e0e0e0" stroke="#424242" stroke-width="2" rx="10"/>
+  
+  <!-- Power flow diagram -->
+  <g id="power-flow">
+    <!-- Input -->
+    <rect x="120" y="150" width="60" height="40" fill="#fdd835" stroke="#000"/>
+    <text x="150" y="175" text-anchor="middle" font-family="Arial" font-size="12">12V DC</text>
+    
+    <!-- Converter -->
+    <rect x="220" y="140" width="60" height="60" fill="#42a5f5" stroke="#000"/>
+    <text x="250" y="170" text-anchor="middle" font-family="Arial" font-size="12">DC-DC</text>
+    <text x="250" y="185" text-anchor="middle" font-family="Arial" font-size="10">95%</text>
+    
+    <!-- Output -->
+    <rect x="320" y="150" width="60" height="40" fill="#66bb6a" stroke="#000"/>
+    <text x="350" y="175" text-anchor="middle" font-family="Arial" font-size="12">5V DC</text>
+    
+    <!-- Flow arrows -->
+    <path d="M180 170 L220 170" fill="none" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+    <path d="M280 170 L320 170" fill="none" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000"/>
+    </marker>
+  </defs>
+  
+  <!-- Status indicators -->
+  <g id="status-leds">
+    <circle cx="130" cy="250" r="5" fill="#4caf50"/> <!-- Power OK -->
+    <text x="145" y="254" font-family="Arial" font-size="10">Power</text>
+    
+    <circle cx="190" cy="250" r="5" fill="#2196f3"/> <!-- Output OK -->
+    <text x="205" y="254" font-family="Arial" font-size="10">Output</text>
+    
+    <circle cx="250" cy="250" r="5" fill="#ff9800"/> <!-- Temp OK -->
+    <text x="265" y="254" font-family="Arial" font-size="10">Temp</text>
+  </g>
+  
+  <!-- Technical specifications -->
+  <g transform="translate(100,320)">
+    <text x="0" y="0" font-family="Arial" font-size="12" fill="#333">Specyfikacja:</text>
+    <text x="0" y="20" font-family="Arial" font-size="12" fill="#333">• Wejście: 12V DC</text>
+    <text x="0" y="40" font-family="Arial" font-size="12" fill="#333">• Wyjście: 5V DC (±0.1V)</text>
+    <text x="200" y="20" font-family="Arial" font-size="12" fill="#333">• Moc: 30W</text>
+    <text x="200" y="40" font-family="Arial" font-size="12" fill="#333">• Sprawność: >95%</text>
+  </g>
+</svg>

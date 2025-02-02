@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <!-- Main module housing -->
+  <rect x="100" y="50" width="300" height="200" fill="#E0E0E0" rx="10" stroke="#424242" stroke-width="2"/>
+  
+  <!-- Sensor array -->
+  <!-- Temperature sensor -->
+  <circle cx="150" cy="100" r="20" fill="#FF5722"/>
+  <text x="150" cy="150" text-anchor="middle" font-family="Arial" font-size="12">TEMP</text>
+  
+  <!-- Humidity sensor -->
+  <circle cx="220" cy="100" r="20" fill="#4FC3F7"/>
+  <text x="220" y="150" text-anchor="middle" font-family="Arial" font-size="12">HUM</text>
+  
+  <!-- Pressure sensor -->
+  <circle cx="290" cy="100" r="20" fill="#7CB342"/>
+  <text x="290" y="150" text-anchor="middle" font-family="Arial" font-size="12">PRES</text>
+  
+  <!-- Air quality sensor -->
+  <rect x="150" y="180" width="40" height="40" fill="#78909C"/>
+  <text x="170" y="235" text-anchor="middle" font-family="Arial" font-size="12">PM</text>
+  
+  <!-- Light sensor -->
+  <polygon points="220,180 240,180 250,200 230,220 210,200" fill="#FFD54F"/>
+  <text x="230" y="235" text-anchor="middle" font-family="Arial" font-size="12">LUX</text>
+  
+  <!-- PIR sensor -->
+  <circle cx="290" cy="200" r="20" fill="#9575CD"/>
+  <text x="290" y="235" text-anchor="middle" font-family="Arial" font-size="12">PIR</text>
+  
+  <!-- Connection interface -->
+  <rect x="100" y="270" width="300" height="30" fill="#424242"/>
+  
+  <!-- Status LEDs -->
+  <circle cx="120" cy="285" r="5" fill="#4CAF50"/>
+  <circle cx="140" cy="285" r="5" fill="#FFC107"/>
+  
+  <!-- Technical specifications -->
+  <g transform="translate(50, 320)">
+    <text x="0" y="20" font-family="Arial" font-size="12" fill="#333">Zakres temperatur: -40°C do +85°C</text>
+    <text x="0" y="40" font-family="Arial" font-size="12" fill="#333">Wilgotność: 0-100% (±3%)</text>
+    <text x="0" y="60" font-family="Arial" font-size="12" fill="#333">Ciśnienie: 300-1100 hPa</text>
+    <text x="250" y="20" font-family="Arial" font-size="12" fill="#333">PM2.5, PM10</text>
+    <text x="250" y="40" font-family="Arial" font-size="12" fill="#333">0-65535 lux</text>
+  </g>
+</svg>

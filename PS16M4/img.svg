@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Wall mount -->
+  <g transform="translate(50,50)">
+    <rect x="0" y="0" width="150" height="200" fill="#ddd" stroke="#666"/>
+    <circle cx="75" cy="100" r="10" fill="#666"/>
+    <line x1="75" y1="100" x2="175" y2="100" stroke="#666" stroke-width="4"/>
+    <text x="75" y="230" text-anchor="middle" font-family="Arial">Montaż ścienny</text>
+  </g>
+
+  <!-- Ground anchor -->
+  <g transform="translate(250,50)">
+    <line x1="75" y1="0" x2="75" y2="200" stroke="#666" stroke-width="4"/>
+    <path d="M45,150 L105,150 L75,200 Z" fill="#666"/>
+    <text x="75" y="230" text-anchor="middle" font-family="Arial">Kotwa gruntowa 50cm</text>
+  </g>
+
+  <!-- Concrete mount -->
+  <g transform="translate(450,50)">
+    <rect x="25" y="150" width="100" height="50" fill="#bbb" stroke="#666"/>
+    <line x1="75" y1="0" x2="75" y2="150" stroke="#666" stroke-width="4"/>
+    <text x="75" y="230" text-anchor="middle" font-family="Arial">Montaż betonowy</text>
+  </g>
+
+  <!-- Tripod -->
+  <g transform="translate(650,50)">
+    <path d="M75,0 L25,173 M75,0 L125,173 M25,173 L125,173" 
+          fill="none" stroke="#666" stroke-width="4"/>
+    <text x="75" y="230" text-anchor="middle" font-family="Arial">Statyw trójnożny</text>
+    <text x="75" y="250" text-anchor="middle" font-family="Arial" font-size="12">Nogi 50cm, kąt 45°</text>
+  </g>
+
+  <!-- Dimensions and details -->
+  <g transform="translate(50,300)">
+    <text x="0" y="0" font-family="Arial" font-size="14" font-weight="bold">Specyfikacja techniczna:</text>
+    <text x="0" y="30" font-family="Arial" font-size="14">• Gwint: 1 cal</text>
+    <text x="0" y="60" font-family="Arial" font-size="14">• Materiał: stal ocynkowana</text>
+    <text x="0" y="90" font-family="Arial" font-size="14">• Długość kotwy: 50cm</text>
+    <text x="0" y="120" font-family="Arial" font-size="14">• Kąt statywu: 45°</text>
+  </g>
+</svg>

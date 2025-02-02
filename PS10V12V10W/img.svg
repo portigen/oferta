@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <!-- Main camera body -->
+  <rect x="150" y="100" width="200" height="120" rx="10" fill="#2f2f2f" stroke="#000" stroke-width="2"/>
+  
+  <!-- Lens -->
+  <circle cx="250" cy="160" r="30" fill="#111" stroke="#000" stroke-width="2"/>
+  <circle cx="250" cy="160" r="25" fill="#222"/>
+  <circle cx="250" cy="160" r="20" fill="#333"/>
+  <circle cx="250" cy="160" r="15" fill="#444"/>
+  
+  <!-- IR LEDs -->
+  <g id="ir-leds">
+    <!-- Top LEDs -->
+    <circle cx="200" cy="130" r="5" fill="#600"/>
+    <circle cx="230" cy="130" r="5" fill="#600"/>
+    <circle cx="270" cy="130" r="5" fill="#600"/>
+    <circle cx="300" cy="130" r="5" fill="#600"/>
+    <!-- Bottom LEDs -->
+    <circle cx="200" cy="190" r="5" fill="#600"/>
+    <circle cx="230" cy="190" r="5" fill="#600"/>
+    <circle cx="270" cy="190" r="5" fill="#600"/>
+    <circle cx="300" cy="190" r="5" fill="#600"/>
+  </g>
+
+  <!-- Field of view indicator -->
+  <path d="M250 160 L150 50 L350 50 Z" fill="rgba(255,255,0,0.1)" stroke="#FFD700" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="250" y="70" text-anchor="middle" font-family="Arial" font-size="12" fill="#333">90°</text>
+
+  <!-- Night vision range -->
+  <path d="M250 160 L150 260 L350 260 Z" fill="rgba(255,0,0,0.1)" stroke="#FF0000" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="250" y="280" text-anchor="middle" font-family="Arial" font-size="12" fill="#333">IR Range: 30m</text>
+
+  <!-- Connections -->
+  <rect x="200" y="230" width="30" height="15" fill="#666"/> <!-- Power -->
+  <rect x="270" y="230" width="30" height="15" fill="#666"/> <!-- Network -->
+  
+  <!-- Technical specifications -->
+  <g transform="translate(50,300)">
+    <text x="0" y="20" font-family="Arial" font-size="12" fill="#333">• 5MP (2592 × 1944)</text>
+    <text x="0" y="40" font-family="Arial" font-size="12" fill="#333">• H.265+/H.264</text>
+    <text x="200" y="20" font-family="Arial" font-size="12" fill="#333">• 20fps@5MP</text>
+    <text x="200" y="40" font-family="Arial" font-size="12" fill="#333">• IP67</text>
+  </g>
+
+  <!-- SD Card slot -->
+  <rect x="320" y="150" width="20" height="20" fill="#666"/>
+  <text x="360" y="165" font-family="Arial" font-size="10" fill="#333">SD Card</text>
+</svg>
