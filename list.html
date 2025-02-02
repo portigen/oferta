@@ -159,14 +159,17 @@
                 <h2>
                     Porównanie produktów
                     <div class="comparison-controls">
-                        <button onclick="window.app.toggleDifferences()" class="button button-secondary" id="toggleDifferences">
+                        <!-- Zmień przyciski na: -->
+                        <button onclick="window.appHandlers.toggleDifferences()" class="button button-secondary" id="toggleDifferences">
                             Podświetl różnice
                         </button>
-                        <button class="button button-primary" onclick="window.print()">
-                            Drukuj
-                        </button>
-                        <button class="button button-accent" onclick="clearComparison()">
+                        
+                        <button onclick="window.appHandlers.clearComparison()" class="button button-accent">
                             Wyczyść
+                        </button>
+                        
+                        <button onclick="window.appHandlers.exportComparison('pdf')" class="button button-primary">
+                            Eksportuj PDF
                         </button>
                     </div>
                 </h2>
