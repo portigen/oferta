@@ -3,20 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{pageTitle}}</title>
+    <title>PORTIGEN - Katalog Produktów</title>
+    
     <!-- External Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    
     <!-- Application Styles -->
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div class="container" id="app">
-        <!-- Content will be dynamically generated -->
-    </div>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <h1>System PORTIGEN</h1>
+            <p>Kompleksowe rozwiązania zasilania i monitoringu dla zastosowań terenowych</p>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="nav-bar">
+        <div class="container">
+            <div class="filters">
+                <!-- Category Filter -->
+                <select data-filter="category" class="input">
+                    <option value="">Wszystkie kategorie</option>
+                    <option value="power">Zasilanie</option>
+                    <option value="sensors">Sensory</option>
+                    <option value="mounting">Montaż</option>
+                    <option value="communication">Komunikacja</option>
+                    <option value="camera">Kamery</option>
+                    <option value="accessories">Akcesoria</option>
+                </select>
+
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <input 
+                        type="text" 
+                        data-search 
+                        class="input" 
+                        placeholder="Szukaj produktów..."
+                    >
+                </div>
+
+                <!-- Sort Options -->
+                <select data-filter="sorting" class="input">
+                    <option value="name">Sortuj po nazwie</option>
+                    <option value="category">Sortuj po kategorii</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Products Grid -->
+        <div id="productGrid" class="product-grid">
+            <!-- Products will be rendered here -->
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state" style="display: none;">
+            <div class="spinner"></div>
+            <p>Ładowanie produktów...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-state" style="display: none;">
+            <p>Wystąpił błąd podczas ładowania produktów.</p>
+            <button class="button button-primary" onclick="window.location.reload()">
+                Spróbuj ponownie
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 PORTIGEN. Wszystkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    <!-- Loading States CSS -->
+    <style>
+        .loading-state {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-state {
+            text-align: center;
+            padding: 40px;
+            background: #fee;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+        }
+
+        .filters {
+            display: flex;
+            gap: var(--spacing-unit);
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .filters {
+                flex-direction: column;
+            }
+
+            .filters > * {
+                width: 100%;
+            }
+        }
+    </style>
 
     <!-- Application Scripts -->
-    <script type="module" src="main.js"></script>
+    <script type="module" src="/js/main.js"></script>
 </body>
 </html>
