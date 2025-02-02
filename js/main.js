@@ -78,6 +78,82 @@ class App {
             loadingState.style.display = 'none';
         }
     }
+
+    
+    async setupComparisonHandlers() {
+        logger.debug('Setting up comparison handlers');
+        
+        // Handle tab switching
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const tab = e.target.textContent.toLowerCase();
+                this.switchComparisonTab(tab);
+            });
+        });
+    
+        // Handle difference highlighting
+        const toggleButton = document.getElementById('toggleDifferences');
+        if (toggleButton) {
+            toggleButton.addEventListener('click', () => {
+                this.toggleDifferences();
+            });
+        }
+    
+        // Handle comparison clearing
+        window.clearComparison = () => {
+            if (confirm('Czy na pewno chcesz wyczyścić porównanie?')) {
+                localStorage.removeItem('compareProducts');
+                this.productManager.refreshComparisonTable();
+            }
+        };
+    
+        // Handle product removal from comparison
+        window.removeFromComparison = (productId) => {
+            this.productManager.removeFromComparison(productId);
+        };
+    }
+    
+    switchComparisonTab(tab) {
+        logger.debug('Switching comparison tab to:', tab);
+        
+        // Update active tab
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.classList.toggle('active', button.textContent.toLowerCase().includes(tab));
+        });
+    
+        // Refresh comparison table with new tab content
+        const highlighting = document.getElementById('toggleDifferences')?.classList.contains('active') || false;
+        this.productManager.refreshComparisonTable(tab, highlighting);
+    }
+    
+    toggleDifferences() {
+        logger.debug('Toggling differences highlighting');
+        
+        const button = document.getElementById('toggleDifferences');
+        if (button) {
+            const isHighlighting = button.classList.toggle('active');
+            const currentTab = document.querySelector('.tab-button.active')?.textContent.toLowerCase() || 'features';
+            this.productManager.refreshComparisonTable(currentTab, isHighlighting);
+        }
+    }
+    
+    // Update init method
+    async init() {
+        try {
+            logger.group('App Initialization', () => {
+                logger.debug('Starting app initialization');
+                logger.debug('Current path:', window.location.pathname);
+            });
+    
+            await this.productManager.init();
+            await this.setupComparisonHandlers();
+            
+            logger.success('App initialization completed successfully');
+        } catch (error) {
+            logger.error('Error during app initialization', error);
+            this.handleInitializationError(error);
+        }
+    }
 }
 
 // Wait for DOM content to be loaded
