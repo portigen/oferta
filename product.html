@@ -205,9 +205,10 @@
     <div id="app"></div>
     
     <script>
+        const PRODUCTS = 'products.json'
         async function renderProduct() {
             try {
-                const response = await fetch('../products.json');
+                const response = await fetch(PRODUCTS);
                 const data = await response.json();
                 const productId = window.location.pathname.split('/')[1];
                 const product = data.products.find(p => p.id === productId);
