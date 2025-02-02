@@ -15,6 +15,78 @@
     
     <!-- Application Styles -->
     <link rel="stylesheet" href="/css/styles.css">
+
+    <style>
+        /* Dodatkowe style dla sekcji porównania */
+        .comparison-preview {
+            margin-top: 40px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .comparison-preview h2 {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .comparison-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .product-comparison {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .comparison-notice {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comparison-notice svg {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            color: #1976d2;
+        }
+
+        .comparison-empty {
+            text-align: center;
+            padding: 40px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+
+        .tab-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 8px 16px;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .tab-button.active {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <!-- Loading State -->
@@ -81,6 +153,47 @@
             <div id="productGrid" class="product-grid">
                 <!-- Products will be rendered here -->
             </div>
+
+            <!-- Comparison Preview Section -->
+            <section class="comparison-preview" id="comparisonPreview">
+                <h2>
+                    Porównanie produktów
+                    <div class="comparison-controls">
+                        <button class="button button-secondary" onclick="toggleDifferences()" id="toggleDifferences">
+                            Podświetl różnice
+                        </button>
+                        <button class="button button-primary" onclick="window.print()">
+                            Drukuj
+                        </button>
+                        <button class="button button-accent" onclick="clearComparison()">
+                            Wyczyść
+                        </button>
+                    </div>
+                </h2>
+
+                <!-- Tab Controls -->
+                <div class="tab-controls">
+                    <button class="tab-button active" onclick="switchTab('features')">Główne cechy</button>
+                    <button class="tab-button" onclick="switchTab('specs')">Specyfikacja</button>
+                    <button class="tab-button" onclick="switchTab('package')">Zawartość zestawu</button>
+                </div>
+
+                <div class="comparison-notice">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12" y2="16"/>
+                    </svg>
+                    <span>
+                        Możesz dodać do porównania maksymalnie 4 produkty. 
+                        Kliknij "Dodaj do porównania" przy wybranym produkcie.
+                    </span>
+                </div>
+
+                <div class="product-comparison" id="comparisonTable">
+                    <!-- Comparison table will be rendered here -->
+                </div>
+            </section>
         </main>
 
         <!-- Footer -->
@@ -106,6 +219,38 @@
                 mainContent.style.display = 'block';
             }
         });
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Update active tab
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.toggle('active', button.textContent.toLowerCase().includes(tabName));
+            });
+
+            // Refresh comparison table with new tab content
+            refreshComparisonTable(tabName);
+        }
+
+        // Toggle differences highlighting
+        function toggleDifferences() {
+            const button = document.getElementById('toggleDifferences');
+            const isHighlighting = button.classList.toggle('active');
+            refreshComparisonTable(getCurrentTab(), isHighlighting);
+        }
+
+        // Get current active tab
+        function getCurrentTab() {
+            const activeTab = document.querySelector('.tab-button.active');
+            return activeTab ? activeTab.textContent.toLowerCase() : 'features';
+        }
+
+        // Clear comparison
+        function clearComparison() {
+            if (confirm('Czy na pewno chcesz wyczyścić porównanie?')) {
+                localStorage.removeItem('compareProducts');
+                refreshComparisonTable(getCurrentTab());
+            }
+        }
     </script>
 </body>
 </html>
