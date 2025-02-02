@@ -5,135 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PORTIGEN - Katalog Produktów</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
     <!-- External Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.min.js"></script>
     
     <!-- Application Styles -->
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <div class="container">
-            <h1>System PORTIGEN</h1>
-            <p>Kompleksowe rozwiązania zasilania i monitoringu dla zastosowań terenowych</p>
-        </div>
-    </header>
+    <!-- Loading State -->
+    <div id="loadingState" class="loading-state">
+        <div class="spinner"></div>
+        <p>Ładowanie produktów...</p>
+    </div>
 
-    <!-- Main Navigation -->
-    <nav class="nav-bar">
-        <div class="container">
-            <div class="filters">
-                <!-- Category Filter -->
-                <select data-filter="category" class="input">
-                    <option value="">Wszystkie kategorie</option>
-                    <option value="power">Zasilanie</option>
-                    <option value="sensors">Sensory</option>
-                    <option value="mounting">Montaż</option>
-                    <option value="communication">Komunikacja</option>
-                    <option value="camera">Kamery</option>
-                    <option value="accessories">Akcesoria</option>
-                </select>
-
-                <!-- Search Bar -->
-                <div class="search-bar">
-                    <input 
-                        type="text" 
-                        data-search 
-                        class="input" 
-                        placeholder="Szukaj produktów..."
-                    >
-                </div>
-
-                <!-- Sort Options -->
-                <select data-filter="sorting" class="input">
-                    <option value="name">Sortuj po nazwie</option>
-                    <option value="category">Sortuj po kategorii</option>
-                </select>
-            </div>
-        </div>
-    </nav>
+    <!-- Error State -->
+    <div id="errorState" class="error-state" style="display: none;">
+        <p>Wystąpił błąd podczas ładowania produktów.</p>
+        <button class="button button-primary" onclick="window.location.reload()">
+            Spróbuj ponownie
+        </button>
+    </div>
 
     <!-- Main Content -->
-    <main class="container">
-        <!-- Products Grid -->
-        <div id="productGrid" class="product-grid">
-            <!-- Products will be rendered here -->
-        </div>
+    <div id="mainContent" style="display: none;">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="container">
+                <h1>System PORTIGEN</h1>
+                <p>Kompleksowe rozwiązania zasilania i monitoringu dla zastosowań terenowych</p>
+            </div>
+        </header>
 
-        <!-- Loading State -->
-        <div id="loadingState" class="loading-state" style="display: none;">
-            <div class="spinner"></div>
-            <p>Ładowanie produktów...</p>
-        </div>
+        <!-- Main Navigation -->
+        <nav class="nav-bar">
+            <div class="container">
+                <div class="filters">
+                    <!-- Category Filter -->
+                    <select data-filter="category" class="input">
+                        <option value="">Wszystkie kategorie</option>
+                        <option value="power">Zasilanie</option>
+                        <option value="sensors">Sensory</option>
+                        <option value="mounting">Montaż</option>
+                        <option value="communication">Komunikacja</option>
+                        <option value="camera">Kamery</option>
+                        <option value="accessories">Akcesoria</option>
+                    </select>
 
-        <!-- Error State -->
-        <div id="errorState" class="error-state" style="display: none;">
-            <p>Wystąpił błąd podczas ładowania produktów.</p>
-            <button class="button button-primary" onclick="window.location.reload()">
-                Spróbuj ponownie
-            </button>
-        </div>
-    </main>
+                    <!-- Search Bar -->
+                    <div class="search-bar">
+                        <input 
+                            type="text" 
+                            data-search 
+                            class="input" 
+                            placeholder="Szukaj produktów..."
+                        >
+                    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 PORTIGEN. Wszystkie prawa zastrzeżone.</p>
-        </div>
-    </footer>
+                    <!-- Sort Options -->
+                    <select data-filter="sorting" class="input">
+                        <option value="name">Sortuj po nazwie</option>
+                        <option value="category">Sortuj po kategorii</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
 
-    <!-- Loading States CSS -->
-    <style>
-        .loading-state {
-            text-align: center;
-            padding: 40px;
-        }
+        <!-- Main Content -->
+        <main class="container">
+            <!-- Products Grid -->
+            <div id="productGrid" class="product-grid">
+                <!-- Products will be rendered here -->
+            </div>
+        </main>
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary-color);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .error-state {
-            text-align: center;
-            padding: 40px;
-            background: #fee;
-            border-radius: var(--border-radius);
-            margin: 20px 0;
-        }
-
-        .filters {
-            display: flex;
-            gap: var(--spacing-unit);
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .filters {
-                flex-direction: column;
-            }
-
-            .filters > * {
-                width: 100%;
-            }
-        }
-    </style>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 PORTIGEN. Wszystkie prawa zastrzeżone.</p>
+            </div>
+        </footer>
+    </div>
 
     <!-- Application Scripts -->
     <script type="module" src="/js/main.js"></script>
+
+    <!-- Scripts Initialization -->
+    <script>
+        // Show main content after loading
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.getElementById('mainContent');
+            const loadingState = document.getElementById('loadingState');
+            
+            if (mainContent && loadingState) {
+                loadingState.style.display = 'none';
+                mainContent.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
